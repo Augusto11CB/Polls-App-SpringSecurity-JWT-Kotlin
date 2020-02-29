@@ -1,0 +1,43 @@
+#DATASOURCE
+polls:
+  entity:
+    package: spring.studies.polls.model
+  datasource:
+    username: admin
+    password: ""
+    db:
+      url: jdbc:h2:mem:todotoday
+      driver: org.h2.Driver
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  jackson:
+    time-zone: UTC
+    serialization:
+      #  is used to disable serializing Java 8 Data/Time values as timestamps
+      write-dates-as-timestamps: false
+  datasource:
+    # No persistence units parsed from
+    initialization-mode: always
+    # Initialize the datasource with available DDL and DML scripts
+  jpa:
+    hibernate:
+      #  This will automatically create/update the tables in the database according to the entities in our application.
+      ddl-auto: update
+      dialect: org.hibernate.dialect.H2Dialect
+      implicit-naming-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+      format_sql: true
+      show_sql: true
+
+#    properties:
+#      hibernate:
+#        dialect:
+#
+#logging:
+#  level: debug
+
+
+
+

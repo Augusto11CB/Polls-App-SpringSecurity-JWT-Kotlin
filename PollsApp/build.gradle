@@ -12,6 +12,11 @@ buildscript {
 	}
 }
 
+ext {
+	ext_kotlin_version = '1.3.61'
+
+}
+
 apply plugin: 'kotlin' // Required for Kotlin integration
 apply plugin: "kotlin-spring" // https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
 apply plugin: 'org.springframework.boot'
@@ -32,24 +37,26 @@ configurations {
 }
 
 repositories {
+	jcenter()
 	mavenCentral()
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
-	compile 'org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version' // Required for Kotlin integration
-	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
-	implementation 'org.jetbrains.kotlin:kotlin-reflect'
+	compile "org.jetbrains.kotlin:kotlin-stdlib:${rootProject.ext.ext_kotlin_version}" // Required for Kotlin integration
+	compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.10.2'
+	compile "org.jetbrains.kotlin:kotlin-reflect:${rootProject.ext.ext_kotlin_version}"
 
 	runtimeOnly 'com.h2database:h2'
 
-
+	compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.10.2'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -60,6 +67,17 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+compileKotlin {
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+
+	kotlinOptions {
+		jvmTarget = "1.8"
+		apiVersion = "1.3"
+		languageVersion = "1.3"
+	}
 }
 
 //https://kotlinlang.org/docs/tutorials/spring-boot-restful.html
