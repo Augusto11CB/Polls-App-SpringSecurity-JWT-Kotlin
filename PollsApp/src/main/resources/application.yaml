@@ -8,6 +8,8 @@ polls:
     db:
       url: jdbc:h2:mem:todotoday
       driver: org.h2.Driver
+  jwt-secret: JWTSuperSecretKey
+  jwt-expiration-in-seconds: 360
 spring:
   h2:
     console:
