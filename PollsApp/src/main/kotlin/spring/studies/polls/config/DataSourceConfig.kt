@@ -1,3 +1,4 @@
+/*
 package spring.studies.polls.config
 
 import org.springframework.boot.jdbc.DataSourceBuilder
@@ -32,7 +33,7 @@ class DataSourceConfig(val env: Environment) {
         val vendorAdapter = HibernateJpaVendorAdapter()
 
         factoryBean.setJtaDataSource(dataSource())
-        factoryBean.jpaVendorAdapter = vendorAdapter
+        factoryBean.jpaVendorAdapter = vendorAdapter//spring.studies.polls.model.domain
         factoryBean.setPackagesToScan(env.getProperty("polls.entity.package"))
         factoryBean.setJpaProperties(getHibernateProperties())
         
@@ -47,8 +48,11 @@ class DataSourceConfig(val env: Environment) {
         properties.put("spring.jpa.hibernate.format_sql", Objects.requireNonNull(env.getProperty("spring.jpa.hibernate.format_sql")))
         properties.put("spring.jpa.hibernate.show_sql", Objects.requireNonNull(env.getProperty("spring.jpa.hibernate.show_sql")))
 //        properties.put("spring.jpa.hibernate.hbm2ddl.auto", Objects.requireNonNull(env.getProperty("hibernate.hbm2ddl.auto")))
-        properties.put("spring.jpa.hibernate.ddl-auto", Objects.requireNonNull(env.getProperty("spring.jpa.hibernate.ddl-auto")))
+        properties.put("spring.jpa.hibernate.ddl-auto","update" */
+/*Objects.requireNonNull(env.getProperty("spring.jpa.hibernate.ddl-auto"))*//*
+)
         return properties
     }
 
 }
+*/

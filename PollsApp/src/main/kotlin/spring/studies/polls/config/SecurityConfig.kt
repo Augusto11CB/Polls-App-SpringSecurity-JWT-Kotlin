@@ -51,7 +51,7 @@ data class SecurityConfig(
 
     override fun configure(auth: AuthenticationManagerBuilder?) {
         auth!!
-            .userDetailsService(customUserDetailsService) //TODO Maybe it doesn't work because I have created a interface that extands UserDetailService
+            .userDetailsService(customUserDetailsService) //TODO Maybe it doesn't work because I have created a interface that extends UserDetailService
             .passwordEncoder(passwordEncoder())
 
         /*
