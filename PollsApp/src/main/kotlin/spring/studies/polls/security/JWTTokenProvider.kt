@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Component
-import spring.studies.polls.model.domain.UserPrincipal
+import spring.studies.polls.model.domain.UserPrincipalCustom
 import java.util.*
 
 /*
@@ -20,14 +20,14 @@ class JWTTokenProvider {
 
     private val logger = LoggerFactory.getLogger(JWTTokenProvider::class.java)
 
-    @Value("\${jwt-secret}")
+    @Value("\${polls.jwt-secret}")
     lateinit var jwtSecret: String
 
-    @Value("\${jwt-expiration-in-seconds}")
+    @Value("\${polls.jwt-expiration-in-seconds}")
     var jwtExpirationInSeconds: Long = 360
 
     fun generateToken(authentication: Authentication): String {
-        val userPrincipal = authentication.principal as UserPrincipal
+        val userPrincipal = authentication.principal as UserPrincipalCustom
 
 //        val now = LocalDateTime.now()
 //        val expiryDate = now.plusSeconds(jwtExpirationInSeconds.toLong())
@@ -54,7 +54,7 @@ class JWTTokenProvider {
     }
 
     fun validateToken(authToken: String): Boolean {
-        
+
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJwt(authToken)
             return true
