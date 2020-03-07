@@ -6,7 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.util.stream.Collectors
 
-public class UserPrincipal(
+public class UserPrincipalCustom(
 
         val id: Long = 0,
 
@@ -27,12 +27,12 @@ public class UserPrincipal(
 
     companion object {
 
-        fun create(user: User): UserPrincipal {
+        fun create(user: User): UserPrincipalCustom {
             var authorities = user.roles.stream()
                     .map { x -> SimpleGrantedAuthority(x.name!!.name) }
                     .collect(Collectors.toList())
 
-            return UserPrincipal(user.id, user.name, user.userName, user.email, user.password, authorities.toMutableList())
+            return UserPrincipalCustom(user.id, user.name, user.userName, user.email, user.password, authorities.toMutableList())
         }
     }
 

@@ -54,6 +54,7 @@ class JWTTokenProvider {
     }
 
     fun validateToken(authToken: String): Boolean {
+        
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJwt(authToken)
             return true
