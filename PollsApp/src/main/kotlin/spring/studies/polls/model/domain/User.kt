@@ -8,11 +8,12 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 
 @Entity
-@Table(name = "users", uniqueConstraints = [UniqueConstraint(columnNames = ["email", "userName"])])
+@Table(name = "users",  schema = "auth", uniqueConstraints = [UniqueConstraint(columnNames = ["email", "userName"])])
 class User(
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "user_id")
         val id: Long = 0,
 
         @NotBlank

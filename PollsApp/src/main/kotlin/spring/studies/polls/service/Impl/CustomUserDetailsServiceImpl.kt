@@ -1,10 +1,9 @@
 package spring.studies.polls.service.Impl
 
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
-import spring.studies.polls.model.domain.UserPrincipal
+import spring.studies.polls.model.domain.UserPrincipalCustom
 import spring.studies.polls.repository.UserRepository
 import spring.studies.polls.service.CustomUserDetailsService
 import javax.transaction.Transactional
@@ -25,7 +24,7 @@ class CustomUserDetailsServiceImpl(
         //The first method loadUserByUsername() is used by Spring security.
 
         val user = userRepository.findById(id).orElseThrow { UsernameNotFoundException("User not found with id : $id") }
-        return UserPrincipal.create(user)
+        return UserPrincipalCustom.create(user)
     }
 
 
@@ -34,7 +33,7 @@ class CustomUserDetailsServiceImpl(
         val user = userRepository.findByUserNameOrEmail(userNameOrUserEmail, userNameOrUserEmail)
 
         user?.let {
-            return UserPrincipal.create(user)
+            return UserPrincipalCustom.create(user)
         }
         throw UsernameNotFoundException("User not found with UserName or User email: $userNameOrUserEmail")
     }

@@ -1,12 +1,12 @@
 #DATASOURCE
 polls:
   entity:
-    package: spring.studies.polls.model
+    package: spring.studies.polls.model.domain
   datasource:
     username: admin
     password: ""
     db:
-      url: jdbc:h2:mem:todotoday
+      url: jdbc:h2:mem:pollapp
       driver: org.h2.Driver
   jwt-secret: JWTSuperSecretKey
   jwt-expiration-in-seconds: 360
@@ -15,6 +15,7 @@ spring:
     console:
       enabled: true
       path: /h2
+
   jackson:
     time-zone: UTC
     serialization:
@@ -24,6 +25,10 @@ spring:
     # No persistence units parsed from
     initialization-mode: always
     # Initialize the datasource with available DDL and DML scripts
+    url: jdbc:h2:mem:pollapp
+    username: admin
+    password: ""
+    driver: org.h2.Driver
   jpa:
     hibernate:
       #  This will automatically create/update the tables in the database according to the entities in our application.

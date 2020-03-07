@@ -5,11 +5,12 @@ import spring.studies.polls.enums.RoleName
 import javax.persistence.*
 
 @Entity
-@Table(name = "roles")
+@Table(name = "roles", schema = "auth")
 data class Role(
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "role_id")
         val id: Long? = 0,
 
         @Enumerated(EnumType.STRING)
